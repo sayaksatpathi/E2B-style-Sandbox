@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sandbox-api
+  namespace: sandbox-platform
+spec:
+  selector:
+    app: sandbox-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
