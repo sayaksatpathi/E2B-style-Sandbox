@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sandbox-sa
+  namespace: sandbox-platform
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: sandbox-role
+  namespace: sandbox-platform
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: sandbox-rolebinding
+  namespace: sandbox-platform
+subjects:
+  - kind: ServiceAccount
+    name: sandbox-sa
+    namespace: sandbox-platform
+roleRef:
+  kind: Role
+  name: sandbox-role
+  apiGroup: rbac.authorization.k8s.io

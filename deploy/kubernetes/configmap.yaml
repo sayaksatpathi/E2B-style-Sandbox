@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sandbox-config
+  namespace: sandbox-platform
+data:
+  SANDBOX_RUNTIME: "docker"
+  CLEANUP_INTERVAL_SECONDS: "30"
+  SERVICE_NAME: "sandbox-api"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
+  DATABASE_URL: "postgresql+asyncpg://sandbox:sandbox@postgres:5432/sandbox_db"
